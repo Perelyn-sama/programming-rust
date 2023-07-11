@@ -6,14 +6,23 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+# for actix_gcd.rs
 actix-web = "1.0.8"
 serde = { version = "1.0", features = ["derive"] }
+
+# for mandelbrot set
 image = "0.13.0"
 num = "0.4"
+crossbeam = "0.8"
+
+# for quickreplace.rs
+text-colorizer = "1"
+regex = "1"
 
 [[bin]]
-name = "chapter_one"
-path = "src/chapter_one.rs"
+name = "chapter_two"
+path = "src/chapter_two.rs"
 
 [[bin]]
 name = "actix_gcd"
@@ -22,3 +31,7 @@ path = "src/actix_gcd.rs"
 [[bin]]
 name = "mandelbrot"
 path = "src/mandelbrot.rs"
+
+[[bin]]
+name = "quickreplace"
+path = "src/quickreplace.rs"
