@@ -1,0 +1,28 @@
+- `Results` typically represent problems caused by things outside the program
+	- That such situations occur is not up to us
+- A program panics when it encounters something so messed up that there must be a bug in the program itself. something like:
+	- out of bounds array access
+	- integer division by zero 
+	- calling `.expect()` on a `Result` that happens to be `Err` 
+	- Assertion failure
+- There's also the macro `panic!()` , for cases where your own code discovers that it has gone wrong
+	- `panic()!` accepts optional `println!()` style arguments, for building an error message
+- Rust can either unwind the stack when a panic happens or abort the process
+	- Unwinding is the default
+- When the Rust compiler unwinds, it drops everything 
+- If the compiler detects another panic while dropping data in programming because of a previous unwrap then it will abort the whole process
+	- If you compile with `-C panic=abort`, the first panic in your program immediately aborts the process.
+- Rust doesn't have exceptions. Instead, functions that can fail have a return type that says so
+- The Result type indicates possible failure
+- Common Result methods
+	- result.is_ok(), result.is_err() 
+- A type alias is a kind of shorthand for type names
+- The `writeln!` macro works like `println!`, except that it writes the data to stream of your choice 
+- In a situation where we want our user to deal with an error, we propagate 
+- `?` also works similarly with the `Option` type. In a function that returns `Option`
+	- You can use `?` to unwrap a value and return early in the case of `None`
+- In a situatioin where you have multiple errors in a function like `std::io::Error` and `std::num::ParseIntError` and your function returns a specific error type like `Result<T, io::Error` and there is a possibility for other error types to surface in the function, you could which to a more generic error type like `type GenericError = Box<dyn std::error::Error + Send + Sync + 'Static>`
+- If you're calling a function that returns a GenericResult and you want to handle one particular kind of error but let all other propagate out, use generic method `error.downcast_ref::<ErrorType>()` 
+	- It borrows a reference to the error, if it happens to be the particular type of error you're looking for
+- To ignore a Error Result we could just assign it to `_`
+- error handling crates: `thiserror` and `anyhow`

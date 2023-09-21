@@ -1,0 +1,10 @@
+- Rust programs are made of crates
+	- Each crate is a complete, cohesive unit
+- Cargo starts by downloading source code for the specified versions of these crates from crates.io. Then, it reads those crates' Cargo.toml files, downloads their dependencies, and so on recursively 
+- Crates we depend on are called transitive dependencies 
+- When compiling libraries Cargo uses the --crate-type lib option 
+- When compiling a program, Cargo uses --crate-type bin
+- To evolve without breaking existing code, Rust uses editions 
+- A crate's edition only affects how its source code is constructed
+	- Editions distinctions are gone by the time the code has been compiled 
+- Whereas crates are about code sharing between projects, modules are about code organization within a project.
